@@ -10,6 +10,7 @@ import {
 import Logo from "../Logo";
 import { NavigationMenu } from "../ui/navigation-menu";
 import { Link } from "react-router-dom";
+import { routes } from "@/router/routes";
 
 const MobileNav = () => {
   const [open, setOpen] = React.useState(false);
@@ -30,7 +31,7 @@ const MobileNav = () => {
         <SheetTitle className="p-4">
           <Logo />
         </SheetTitle>
-        <Link to="/dashboard/identify-data">
+        <Link to={routes.identifyData}>
           <Button variant="ghost">Dashboard</Button>
         </Link>
       </SheetContent>

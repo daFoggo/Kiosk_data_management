@@ -5,6 +5,7 @@ export const NAVIGATION_LINKS = [
   {
     title: "Dữ liệu",
     icon: Database,
+    url: "#data",
     isActive: false,
     items: [
       {
@@ -24,6 +25,7 @@ export const NAVIGATION_LINKS = [
   {
     title: "Thống kê",
     icon: ChartArea,
+    url: "#statistics",
     isActive: false,
     items: [
       {

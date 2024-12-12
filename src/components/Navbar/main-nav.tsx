@@ -2,6 +2,7 @@ import { NavigationMenu } from "@/components/ui/navigation-menu";
 import Logo from "@/components/Logo";
 import { Link } from "react-router";
 import { Button } from "../ui/button";
+import { routes } from "@/router/routes";
 
 const MainNav = () => {
   return (
@@ -10,7 +11,7 @@ const MainNav = () => {
         <Logo />
       </Link>
       <NavigationMenu>
-        <Link to="/dashboard/identify-data">
+        <Link to={routes.identifyData}>
           <Button variant="ghost">Dashboard</Button>
         </Link>
       </NavigationMenu>

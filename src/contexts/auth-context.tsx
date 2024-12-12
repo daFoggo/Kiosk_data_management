@@ -1,8 +1,8 @@
+import axios from "axios";
 import { ReactNode, useEffect } from "react";
 import { createContext, useContext, useState } from "react";
 import { IAuthContextType, IUser } from "@/models/auth-context";
 import { jwtDecode } from "jwt-decode";
-import axios from "axios";
 import { LOGIN_IP } from "@/utils/ip";
 const AuthContext = createContext<IAuthContextType | null>(null);
 
@@ -10,7 +10,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
   const isTokenValid = (token: string): boolean => {
     try {
       const decodedToken = jwtDecode(token);
@@ -21,20 +20,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user");
+  
     if (storedToken && isTokenValid(storedToken)) {
-      const storedUser = localStorage.getItem("user");
-      setToken(storedToken);
       if (storedUser) {
-        setUser(JSON.parse(storedUser));
-        setIsAuthenticated(true);
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+        setIsAuthenticated(true); 
       }
     } else {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
+      setIsAuthenticated(false);
     }
-  }, []);
+  }, []); // Chỉ chạy 1 lần khi mount
 
   const login = async (cccd_id: string, password: string) => {
     try {

@@ -20,6 +20,8 @@ import {
 } from "@/components/ui/sidebar";
 import { useAuth } from "@/contexts/auth-context";
 import { ThemeToggle } from "../ThemeToggle";
+import { useNavigate } from "react-router-dom";
+import { routes } from "@/router/routes";
 
 const NavUser = ({
   user,
@@ -31,7 +33,7 @@ const NavUser = ({
 }) => {
   const { isMobile } = useSidebar();
   const logout = useAuth()?.logout ?? (() => Promise.resolve(false));
-
+  const navigate = useNavigate();
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -84,8 +86,13 @@ const NavUser = ({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <LogOut onClick={() => logout()} />
+            <DropdownMenuItem
+              onClick={() => {
+                logout();
+                navigate(routes.login);
+              }}
+            >
+              <LogOut />
               Log out
             </DropdownMenuItem>
           </DropdownMenuContent>

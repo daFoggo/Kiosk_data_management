@@ -23,6 +23,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { toast } from "sonner";
+import { routes } from "@/router/routes";
 
 const formSchema = z.object({
   cccd_id: z.string().nonempty(),
@@ -48,7 +49,7 @@ const Login = () => {
 
       if (success) {
         toast.success("Đăng nhập thành công");
-        navigate("/dashboard/identify-data");
+        navigate(routes.identifyData);
       } else {
         toast.error("Đăng nhập thất bại");
       }
@@ -78,9 +79,9 @@ const Login = () => {
                 name="cccd_id"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel>Mã CCCD</FormLabel>
+                    <FormLabel>Tên người dùng</FormLabel>
                     <FormControl>
-                      <Input placeholder="Nhập mã CCCD" {...field} />
+                      <Input placeholder="Nhập tên người dùng" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

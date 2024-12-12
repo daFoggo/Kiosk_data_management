@@ -1,5 +1,46 @@
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
+import axios from "axios";
+import { ShieldCheck } from "lucide-react";
+import StatisticBlock from "@/components/StatisticBlock";
+import { GET_IDENTIFY_DATA_IP } from "@/utils/ip";
+import { IIdentifyData } from "@/models/identify";
+import { columns } from "./columns";
+import { DataTable } from "@/components/ui/data-table";
+
 const Identify = () => {
-  return <div>Identify</div>;
+  const [identifyData, setIdentifyData] = useState<IIdentifyData[]>([]);
+
+  useEffect(() => {
+    handleGetIdentifyData();
+  }, []);
+
+  const handleGetIdentifyData = async () => {
+    try {
+      const response = await axios.get(GET_IDENTIFY_DATA_IP);
+
+      if (response.data.success) {
+        setIdentifyData(response?.data.payload);
+      }
+    } catch (error) {
+      toast.error("Có lỗi khi lấy dữ liệu nhận diện");
+      console.log(error);
+    }
+  };
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex gap-4 justify-between">
+        <StatisticBlock
+          icon={<ShieldCheck className="size-2" />}
+          title="Số lượng hoàn thành"
+          value={String(identifyData.length)}
+          description="đã hoàn thành xác thực thông tin"
+        />
+      </div>
+      <DataTable columns={columns} data={identifyData} />
+    </div>
+  );
 };
 
 export default Identify;

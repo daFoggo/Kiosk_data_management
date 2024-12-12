@@ -1,4 +1,9 @@
-import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  Outlet,
+  useNavigate,
+} from "react-router-dom";
 import { routes } from "./routes";
 
 import { useAuth } from "@/contexts/auth-context";
@@ -14,12 +19,27 @@ import Event from "@/components/pages/Event";
 import Appointment from "@/components/pages/Appointment";
 
 import frogJumping from "@/assets/gifs/frog-laughing.gif";
+import { IAuthContextType } from "@/models/auth-context";
+import { useEffect } from "react";
 
 const ProtectedRoute = () => {
-  const isAuthenticated = useAuth()?.isAuthenticated ?? false;
+  const navigate = useNavigate();
+  const { isAuthenticated = false, user } = useAuth() as IAuthContextType;
 
-  //   return isAuthenticated ? <Outlet /> : <Navigate to={routes.login} replace />;
-  return <Outlet />;
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user");
+
+    if (storedToken && storedUser && !isAuthenticated) {
+      return;
+    }
+
+    if (!storedToken || !storedUser) {
+      navigate(routes.login, { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
+
+  return isAuthenticated && user?.role === "admin" ? <Outlet /> : null;
 };
 
 export const router = createBrowserRouter([
@@ -67,7 +87,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <Navigate to="/dashboard/identify-data" replace />,
+    element: <Navigate to={routes.identifyData} />,
   },
   {
     path: "*",

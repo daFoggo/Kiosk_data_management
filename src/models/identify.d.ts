@@ -1,5 +1,4 @@
 export interface IIdentifyData {
-  original: any;
   name: string;
   role: string;
   department: IDepartment;

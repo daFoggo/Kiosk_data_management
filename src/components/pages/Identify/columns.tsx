@@ -1,8 +1,7 @@
-import { useState, useMemo, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { IDepartment, IIdentifyData } from "@/models/identify";
-import { ColumnDef, CellContext } from "@tanstack/react-table";
-import { ArrowUpDown, Check, ChevronsUpDown, Eye } from "lucide-react";
+import { ColumnDef } from "@tanstack/react-table";
+import { ArrowUpDown, Eye } from "lucide-react";
 import {
   Carousel,
   CarouselContent,

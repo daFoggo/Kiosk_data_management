@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import { routes } from "./routes";
 
-import { useAuth } from "@/contexts/auth-context";
+import { useAuth } from "@/hooks/contexts/auth-context";
 
 import AuthLayout from "@/layouts/auth-layout";
 import RootLayout from "@/layouts/root-layout";

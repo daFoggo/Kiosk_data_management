@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { BreadcrumbProvider } from '@/contexts/bread-crumb-context';
+import { BreadcrumbProvider } from '@/hooks/contexts/bread-crumb-context';
 
 const RootLayout = () => {
   return (

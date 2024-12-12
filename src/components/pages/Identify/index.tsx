@@ -7,15 +7,18 @@ import { GET_IDENTIFY_DATA_IP } from "@/utils/ip";
 import { IIdentifyData } from "@/models/identify";
 import { columns } from "./columns";
 import { DataTable } from "@/components/ui/data-table";
+import { set } from "react-hook-form";
 
 const Identify = () => {
   const [identifyData, setIdentifyData] = useState<IIdentifyData[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     handleGetIdentifyData();
   }, []);
 
   const handleGetIdentifyData = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.get(GET_IDENTIFY_DATA_IP);
 
@@ -25,6 +28,8 @@ const Identify = () => {
     } catch (error) {
       toast.error("Có lỗi khi lấy dữ liệu nhận diện");
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -38,7 +43,7 @@ const Identify = () => {
           description="đã hoàn thành xác thực thông tin"
         />
       </div>
-      <DataTable columns={columns} data={identifyData} />
+      <DataTable columns={columns} data={identifyData} colToSearch="name" searchPlaceholder="Tìm kiếm học sinh..." isLoading={isLoading} />
     </div>
   );
 };

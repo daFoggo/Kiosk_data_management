@@ -16,7 +16,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import { useBreadcrumb } from "@/contexts/bread-crumb-context";
+import { useBreadcrumb } from "@/hooks/contexts/bread-crumb-context";
 
 const NavMain = ({
   items,

@@ -21,15 +21,14 @@ import {
 import { Button } from "./button";
 import { Input } from "./input";
 import { useState } from "react";
-
-interface IDataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-}
+import { IDataTableProps } from "@/models/data-table";
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  colToSearch,
+  searchPlaceholder,
+  isLoading,
 }: IDataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -53,10 +52,15 @@ export function DataTable<TData, TValue>({
     <div>
       <div className="flex items-center py-4">
         <Input
-          placeholder="Tìm kiếm học sinh..."
-          value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
+          placeholder={searchPlaceholder ?? "Tìm kiếm..."}
+          value={
+            (table.getColumn(colToSearch ?? "")?.getFilterValue() as string) ??
+            ""
+          }
           onChange={(event) =>
-            table.getColumn("name")?.setFilterValue(event.target.value)
+            table
+              .getColumn(colToSearch ?? "")
+              ?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
@@ -104,7 +108,7 @@ export function DataTable<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  {isLoading ? "Đang tải..." : "Không có dữ liệu"}
                 </TableCell>
               </TableRow>
             )}

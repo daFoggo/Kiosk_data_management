@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/dialog";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { convertRole } from "@/utils/helper/common";
+import { convertGender, convertRole } from "@/utils/helper/common";
 import {
   Select,
   SelectContent,
@@ -87,7 +87,7 @@ export const columns: ColumnDef<IIdentifyData>[] = [
               table.getColumn("department")?.setFilterValue(value);
             }}
           >
-            <SelectTrigger className="w-fit border-none">
+            <SelectTrigger className="w-fit border-none shadow-none">
               <SelectValue placeholder="Mã lớp / Phòng ban" />
             </SelectTrigger>
             <SelectContent>
@@ -120,6 +120,10 @@ export const columns: ColumnDef<IIdentifyData>[] = [
   {
     accessorKey: "gender",
     header: "Giới tính",
+    cell: ({ row }) => {
+      const gender = row.getValue("gender") as string;
+      return convertGender(gender);
+    },
   },
   {
     accessorKey: "img",

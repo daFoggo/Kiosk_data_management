@@ -174,7 +174,8 @@ const Appointment = () => {
               >
                 <CartesianGrid vertical={false} />
                 <XAxis
-                  dataKey="month"
+                  dataKey="thang"
+                  tickFormatter={(value) => `Th${value}`}
                   tickLine={false}
                   tickMargin={15}
                   axisLine={false}
@@ -186,7 +187,12 @@ const Appointment = () => {
                   cursor={false}
                   content={<ChartTooltipContent hideLabel />}
                 />
-                <Bar dataKey="total" fill="#6467f2" radius={3}>
+                <Bar
+                  dataKey="so_luong"
+                  fill="#6467f2"
+                  radius={3}
+                  name="Số lượng"
+                >
                   <LabelList
                     position="top"
                     offset={12}

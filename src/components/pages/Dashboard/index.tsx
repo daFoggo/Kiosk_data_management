@@ -14,7 +14,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { useBreadcrumb } from "@/hooks/contexts/bread-crumb-context";
+import { useBreadcrumb } from "@/contexts/bread-crumb-context";
 
 const Dashboard = () => {
   const { currentBreadcrumb } = useBreadcrumb();

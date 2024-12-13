@@ -18,7 +18,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { useAuth } from "@/hooks/contexts/auth-context";
+import { useAuth } from "@/contexts/auth-context";
 import { ThemeToggle } from "../ThemeToggle";
 import { useNavigate } from "react-router-dom";
 import { routes } from "@/router/routes";
@@ -82,7 +82,7 @@ const NavUser = ({
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Bell />
-                Notifications
+                Thông báo
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
@@ -93,7 +93,7 @@ const NavUser = ({
               }}
             >
               <LogOut />
-              Log out
+              Đăng xuất
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

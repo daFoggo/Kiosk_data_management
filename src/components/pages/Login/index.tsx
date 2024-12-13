@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuth } from "@/hooks/contexts/auth-context";
+import { useAuth } from "@/contexts/auth-context";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -94,7 +94,7 @@ const Login = () => {
                   <FormItem className="w-full">
                     <FormLabel>Mật khẩu</FormLabel>
                     <FormControl>
-                      <Input placeholder="Nhập mật khẩu" {...field} />
+                      <Input placeholder="Nhập mật khẩu" {...field} type="password" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { BreadcrumbProvider } from "@/hooks/contexts/bread-crumb-context";
+import { BreadcrumbProvider } from "@/contexts/bread-crumb-context";
 import { Toaster } from "@/components/ui/sonner";
 
 const RootLayout = () => {

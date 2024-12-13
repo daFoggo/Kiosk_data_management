@@ -8,7 +8,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Logo from "../Logo";
-import { NavigationMenu } from "../ui/navigation-menu";
 import { Link } from "react-router-dom";
 import { routes } from "@/router/routes";
 

@@ -23,3 +23,20 @@ export const convertGender = (gender: string) => {
       return "Không xác định";
   }
 };
+
+export const convertStatus = (status: string) => {
+  switch (status) {
+    case "pending":
+      return "Chờ xác nhận";
+    case "confirmed":
+      return "Đã xác nhận";
+    case "finished":
+      return "Đã hoàn thành";
+    case "canceled":
+      return "Đã hủy";
+    case "expired":
+      return "Đã hết hạn";
+    default:
+      return "Không xác định";
+  }
+};

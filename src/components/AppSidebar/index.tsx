@@ -16,7 +16,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { useAuth } from "@/hooks/contexts/auth-context";
+import { useAuth } from "@/contexts/auth-context";
 import { NAVIGATION_LINKS } from "./constant";
 
 const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {

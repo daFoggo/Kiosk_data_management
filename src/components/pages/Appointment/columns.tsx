@@ -1,5 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { IAppointmentData } from "@/models/appointment";
+import { convertStatus } from "@/utils/helper/common";
 
 export const columns: ColumnDef<IAppointmentData>[] = [
   {
@@ -14,13 +15,10 @@ export const columns: ColumnDef<IAppointmentData>[] = [
   {
     accessorKey: "start_time",
     header: "Thời gian bắt đầu",
-    cell: ({ row }) =>
-      new Date(row.original.start_time).toLocaleString("vi-VN"),
   },
   {
     accessorKey: "end_time",
     header: "Thời gian kết thúc",
-    cell: ({ row }) => new Date(row.original.end_time).toLocaleString("vi-VN"),
   },
   {
     accessorKey: "location",
@@ -29,6 +27,9 @@ export const columns: ColumnDef<IAppointmentData>[] = [
   {
     accessorKey: "status",
     header: "Trạng thái",
+    cell: ({ row}) => {
+      return convertStatus(row.getValue("status"));
+    }
   },
   {
     accessorKey: "participants",
